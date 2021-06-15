@@ -1,0 +1,145 @@
+databaseChangeLog:
+- changeSet:
+    id: 1623788401366-1
+    author: r2 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: vendor_id
+            type: TEXT
+        - column:
+            constraints:
+              nullable: false
+            name: pickup_datetime
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            constraints:
+              nullable: false
+            name: dropoff_datetime
+            type: TIMESTAMP WITHOUT TIME ZONE
+        - column:
+            name: passenger_count
+            type: numeric
+        - column:
+            name: trip_distance
+            type: numeric
+        - column:
+            name: pickup_longitude
+            type: numeric
+        - column:
+            name: pickup_latitude
+            type: numeric
+        - column:
+            name: rate_code
+            type: INTEGER
+        - column:
+            name: dropoff_longitude
+            type: numeric
+        - column:
+            name: dropoff_latitude
+            type: numeric
+        - column:
+            name: payment_type
+            type: INTEGER
+        - column:
+            name: fare_amount
+            type: numeric
+        - column:
+            name: extra
+            type: numeric
+        - column:
+            name: mta_tax
+            type: numeric
+        - column:
+            name: tip_amount
+            type: numeric
+        - column:
+            name: tolls_amount
+            type: numeric
+        - column:
+            name: improvement_surcharge
+            type: numeric
+        - column:
+            name: total_amount
+            type: numeric
+        tableName: rides
+- changeSet:
+    id: 1623788401366-2
+    author: r2 (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: vendor_id
+        - column:
+            descending: true
+            name: pickup_datetime
+        indexName: rides_vendor_id_pickup_datetime_idx
+        tableName: rides
+- changeSet:
+    id: 1623788401366-3
+    author: r2 (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            descending: true
+            name: pickup_datetime
+        - column:
+            name: vendor_id
+        indexName: rides_pickup_datetime_vendor_id_idx
+        tableName: rides
+- changeSet:
+    id: 1623788401366-4
+    author: r2 (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: rate_code
+        - column:
+            descending: true
+            name: pickup_datetime
+        indexName: rides_rate_code_pickup_datetime_idx
+        tableName: rides
+- changeSet:
+    id: 1623788401366-5
+    author: r2 (generated)
+    changes:
+    - createIndex:
+        columns:
+        - column:
+            name: passenger_count
+        - column:
+            descending: true
+            name: pickup_datetime
+        indexName: rides_passenger_count_pickup_datetime_idx
+        tableName: rides
+- changeSet:
+    id: 1623788401366-6
+    author: r2 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: payment_type
+            type: INTEGER
+        - column:
+            name: description
+            type: TEXT
+        tableName: payment_types
+- changeSet:
+    id: 1623788401366-7
+    author: r2 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            name: rate_code
+            type: INTEGER
+        - column:
+            name: description
+            type: TEXT
+        tableName: rates
+
