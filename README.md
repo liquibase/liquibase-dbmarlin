@@ -7,6 +7,7 @@ Add the following properties to your `liquibase.properties` file.
 liquibase.hub.ApiKey: *** Your Liquibase Hub API Key ***
 dbmarlin.url: *** URL to your DBmarlin Instance ***
 dbmarlin.instanceId: *** The database target ID from the DBmarlin dashboard ***
+dbmarlin.basicAuth: username:password
 ```
 
 ## Configuring the extension

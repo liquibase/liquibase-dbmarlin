@@ -7,6 +7,8 @@ public class DBMarlinConfiguration implements AutoloadedConfigurations {
 
     public static ConfigurationDefinition<String> DBMARLIN_URL;
     public static ConfigurationDefinition<Integer> DBMARLIN_INSTANCE_ID;
+    public static ConfigurationDefinition<String> DBMARLIN_BASIC_AUTH;
+
 
     static {
         ConfigurationDefinition.Builder builder = new ConfigurationDefinition.Builder("dbmarlin");
@@ -17,6 +19,10 @@ public class DBMarlinConfiguration implements AutoloadedConfigurations {
         DBMARLIN_INSTANCE_ID = builder.define("instanceId", Integer.class)
                 .setDescription("The database target ID from the DBmarlin dashboard.")
                 //.setDefaultValue(0)
+                .build();
+        DBMARLIN_BASIC_AUTH = builder.define("basicAuth", String.class)
+                .setDescription("Username:Password combination for Basic Authentication")
+                .setDefaultValue("")
                 .build();
     }
 }

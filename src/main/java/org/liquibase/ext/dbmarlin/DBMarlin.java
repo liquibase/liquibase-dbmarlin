@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+import java.util.Base64;
 import java.util.Date;
 
 /**
@@ -19,12 +20,14 @@ public class DBMarlin {
     private final Integer DBMARLIN_DB_TARGET_ID;
     private final Integer DBMARLIN_EVENT_TYPE_ID;
     private final String DBMARLIN_COLOUR_CODE;
+    private final String DBMARLIN_BASIC_AUTH;
 
     {
         DBMARLIN_URL = DBMarlinConfiguration.DBMARLIN_URL.getCurrentValue();
         DBMARLIN_DB_TARGET_ID = DBMarlinConfiguration.DBMARLIN_INSTANCE_ID.getCurrentValue();
         DBMARLIN_EVENT_TYPE_ID = 5;  // Liquibase change from http://staging3.dbmarlin.com:9090/admin/event-types
         DBMARLIN_COLOUR_CODE = "#2962ff";
+        DBMARLIN_BASIC_AUTH = DBMarlinConfiguration.DBMARLIN_BASIC_AUTH.getCurrentValue();
     }
 
     /**
@@ -40,6 +43,10 @@ public class DBMarlin {
         HttpURLConnection httpClient = (HttpURLConnection) obj.openConnection();
         httpClient.setRequestMethod("POST");
         httpClient.setRequestProperty("Content-Type", "application/json");
+
+        //Set Basic Auth
+        String auth = Base64.getEncoder().encodeToString(this.DBMARLIN_BASIC_AUTH.getBytes());
+        httpClient.setRequestProperty("Authorization", "Basic " + auth);
 
         // Send post request
         httpClient.setDoOutput(true);
