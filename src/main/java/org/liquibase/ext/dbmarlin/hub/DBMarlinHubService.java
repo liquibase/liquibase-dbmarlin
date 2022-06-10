@@ -49,7 +49,8 @@ public class DBMarlinHubService extends StandardHubService {
             if (response == HttpURLConnection.HTTP_OK) {
                 this.writeToUI("DBmarlin Successfully Updated.");
             } else  {
-                this.writeToUI("Unable to update DBmarlin.");
+                this.writeToUI("Unable to update DBmarlin. Response code is " +
+					response);
             }
         } catch (IOException e) {
             this.writeToUI("There was an error trying to connect to DB Marlin.");
