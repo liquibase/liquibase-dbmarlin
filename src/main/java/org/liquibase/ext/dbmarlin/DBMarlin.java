@@ -19,12 +19,14 @@ public class DBMarlin {
     private final Integer DBMARLIN_DB_TARGET_ID;
     private final Integer DBMARLIN_EVENT_TYPE_ID;
     private final String DBMARLIN_COLOUR_CODE;
+    private final String DBMARLIN_API_KEY;
 
     {
         DBMARLIN_URL = DBMarlinConfiguration.DBMARLIN_URL.getCurrentValue();
         DBMARLIN_DB_TARGET_ID = DBMarlinConfiguration.DBMARLIN_INSTANCE_ID.getCurrentValue();
-        DBMARLIN_EVENT_TYPE_ID = 5;  // Liquibase change from http://staging3.dbmarlin.com:9090/admin/event-types
+        DBMARLIN_EVENT_TYPE_ID = DBMarlinConfiguration.DBMARLIN_EVENT_TYPE_ID.getCurrentValue();
         DBMARLIN_COLOUR_CODE = "#2962ff";
+		DBMARLIN_API_KEY = DBMarlinConfiguration.DBMARLIN_API_KEY.getCurrentValue();
     }
 
     /**
@@ -40,6 +42,7 @@ public class DBMarlin {
         HttpURLConnection httpClient = (HttpURLConnection) obj.openConnection();
         httpClient.setRequestMethod("POST");
         httpClient.setRequestProperty("Content-Type", "application/json");
+		httpClient.setRequestProperty ("Authorization", "Basic " + DBMARLIN_API_KEY);
 
         // Send post request
         httpClient.setDoOutput(true);
