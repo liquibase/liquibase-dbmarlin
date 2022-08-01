@@ -12,3 +12,4 @@ buildNumber.properties
 *.iml
 .idea
 liquibase.properties
+liquibase_libs
