@@ -1,9 +1,9 @@
-package org.liquibase.ext.dbmarlin.hub;
+package org.liquibase.ext.dbmarlin;
 
 import liquibase.configuration.AutoloadedConfigurations;
 import liquibase.configuration.ConfigurationDefinition;
 
-public class DBMarlinConfiguration implements AutoloadedConfigurations {
+public class DBmarlinConfiguration implements AutoloadedConfigurations {
 
     public static ConfigurationDefinition<String> DBMARLIN_URL;
     public static ConfigurationDefinition<Integer> DBMARLIN_INSTANCE_ID;
@@ -20,13 +20,13 @@ public class DBMarlinConfiguration implements AutoloadedConfigurations {
                 .setDescription("The database target ID from the DBmarlin dashboard.")
                 //.setDefaultValue(0)
                 .build();
-        DBMARLIN_EVENT_TYPE_ID = builder.define("eventTypeId", Integer.class)
-                .setDescription("The event type ID from the DBmarlin dashboard.")
-                .setDefaultValue(5)
-                .build();
         DBMARLIN_API_KEY = builder.define("apiKey", String.class)
                 .setDescription("The Base64 encoded user:password for DBmarlin UI/API.")
                 .setDefaultValue("")
+                .build();
+        DBMARLIN_EVENT_TYPE_ID = builder.define("eventTypeId", Integer.class)
+                .setDescription("The event type ID from the DBmarlin dashboard.")
+                .setDefaultValue(5)
                 .build();
     }
 }
