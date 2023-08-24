@@ -1,5 +1,5 @@
-# Liquibase DB Marlin Extension
-When a Liquibase changelog runs and creates an operation in Liquibase Hub, the link for that operation is sent to DB Marlin. This integration is based on the [DB Marlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
+# Liquibase DBmarlin Extension
+When a Liquibase changelog runs and creates an operation in Liquibase Hub, the link for that operation is sent to DBmarlin. This integration is based on the [DBmarlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
 
 ## Configuration
 Add the following properties to your `liquibase.properties` file.

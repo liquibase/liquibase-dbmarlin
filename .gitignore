@@ -13,3 +13,4 @@ buildNumber.properties
 .idea
 liquibase.properties
 liquibase_libs
+.vscode/settings.json
