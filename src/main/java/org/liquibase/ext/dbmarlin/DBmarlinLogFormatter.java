@@ -64,7 +64,7 @@ public class DBmarlinLogFormatter extends StructuredLogFormatter {
                 
                     try {
                         eventDate = dateFormat.parse(timestamp);
-                        //System.out.println("Parsed Date: " + eventDate);
+                        System.out.println("Parsed Date: " + eventDate);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }

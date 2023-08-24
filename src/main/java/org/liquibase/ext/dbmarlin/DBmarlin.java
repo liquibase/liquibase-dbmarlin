@@ -7,6 +7,7 @@ import java.net.URL;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * The main DB Marlin API Interface.
@@ -81,9 +82,12 @@ public class DBmarlin {
      * @return String
      */
     private String generatePayload(String eventLink, Date eventTime, String eventTitle, String eventDescription) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
         return "[{" +
                 "\"eventId\": 1" + "," +
-                "\"startDateTime\": \"" + this.formatDate(eventTime, DateTimeFormatter.ISO_DATE_TIME) + "\"," +
+                "\"startDateTime\": \"" + dateFormat.format(eventTime) + "\"," +
                 "\"databaseTargetId\": " + this.DBMARLIN_DB_TARGET_ID + "," +
                 "\"eventTypeId\": " + this.DBMARLIN_EVENT_TYPE_ID + "," +
                 "\"title\": \"" + eventTitle + "\"," +
