@@ -29,7 +29,7 @@ public class DBmarlinLogFormatter extends StructuredLogFormatter {
         output.sendMessage(message);
     }
 
-    public String truncateString(String input, int maxLength) {
+    private String truncateString(String input, int maxLength) {
         if (input.length() <= maxLength) {
             return input; // No truncation needed
         } else {
@@ -37,59 +37,50 @@ public class DBmarlinLogFormatter extends StructuredLogFormatter {
         }
     }
 
-    private void postToDBMarlin(String logRecord) throws LiquibaseException {
+    private void postToDBmarlin(String logRecord) throws LiquibaseException {
 
         // Create a SnakeYAML Yaml instance
         Yaml yaml = new Yaml();
 
         try {
             // Parse the JSON string into a Map
-            Object parsedObject = yaml.load(logRecord);
-            
-            if (parsedObject instanceof Map) {
-                Map<String, Object> map = (Map<String, Object>) parsedObject;
-                String message = (String) map.get("message");
-                String timestamp = (String) map.get("timestamp");
-                String changesetSql = (String) map.get("changesetSql");
-                String changesetId = (String) map.get("changesetId");
-                String changesetFilepath = (String) map.get("changesetFilepath");
-                Date eventDate = new java.util.Date();
-                
-                
+			Map<String, Object> map = yaml.load(logRecord);
+			String message = (String) map.get("message");
+			String timestamp = (String) map.get("timestamp");
+			String changesetSql = (String) map.get("changesetSql");
+			String changesetId = (String) map.get("changesetId");
+			String changesetFilepath = (String) map.get("changesetFilepath");
+			Date eventDate = new java.util.Date();
 
-                // There are a lot of messages and we only want to send and event for changesets that ran successfully
-                if (message.contains("ran successfully")) {
+			// There are a lot of messages and we only want to send and event for changesets that ran successfully
+			if (message.contains("ran successfully")) {
 
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
-                
-                    try {
-                        eventDate = dateFormat.parse(timestamp);
-                        System.out.println("Parsed Date: " + eventDate);
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                    }
+				SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
 
-                    // eventTitle is limited to 50 chars on the DBmarlin side
-                    String eventTitle = "ChangeSet " + changesetFilepath + "::" + changesetId + " success";
-                    eventTitle = truncateString(eventTitle, 50);
+				try {
+					eventDate = dateFormat.parse(timestamp);
+					System.out.println("Parsed Date: " + eventDate);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 
-                    String eventDescription = message + ". \\n" + changesetSql;
-                    try {
-                        int response = this.DBMARLIN.postEvent("", eventDate, eventTitle, eventDescription);
-                        if (response == HttpURLConnection.HTTP_OK) {
-                            this.writeToUI ("DBmarlin Successfully Updated.");
-                        } else  {
-                            this.writeToUI("Unable to update DBmarlin. Response code is " + response);
-                        }
-                    } catch (IOException e) {
-                        this.writeToUI("There was an error trying to connect to DBmarlin.");
-                        e.printStackTrace();
-                    }
-                }
+				// eventTitle is limited to 50 chars on the DBmarlin side
+				String eventTitle = "ChangeSet " + changesetFilepath + "::" + changesetId + " success";
+				eventTitle = truncateString(eventTitle, 50);
 
-            } else {
-                System.err.println("Parsed object is not a Map.");
-            }
+				String eventDescription = message + ". \\n" + changesetSql;
+				try {
+					int response = this.DBMARLIN.postEvent("", eventDate, eventTitle, eventDescription);
+					if (response == HttpURLConnection.HTTP_OK) {
+						this.writeToUI ("DBmarlin Successfully Updated.");
+					} else  {
+						this.writeToUI("Unable to update DBmarlin. Response code is " + response);
+					}
+				} catch (IOException e) {
+					this.writeToUI("There was an error trying to connect to DBmarlin.");
+					e.printStackTrace();
+				}
+			}
         } catch (YAMLException e) {
             System.err.println("Error parsing JSON: " + e.getMessage());
         }
@@ -98,9 +89,10 @@ public class DBmarlinLogFormatter extends StructuredLogFormatter {
 
     @Override
     public String format(LogRecord logRecord) {
+		// A side effect of formatting is to send a request to DBmarlin...
         String formatted = super.format(logRecord);
         try {
-            this.postToDBMarlin(formatted);
+            this.postToDBmarlin(formatted);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
