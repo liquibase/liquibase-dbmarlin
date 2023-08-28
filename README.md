@@ -1,10 +1,9 @@
 # Liquibase DB Marlin Extension
-When a Liquibase changelog runs and creates an operation in Liquibase Hub, the link for that operation is sent to DB Marlin. This integration is based on the [DB Marlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
+When a Liquibase executes an operation, the data associated with that operation is sent to DB Marlin so it's available in the database performance timeline for Root Cause Analysis. This integration is based on the [DB Marlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
 
 ## Configuration
 Add the following properties to your `liquibase.properties` file.
 ```properties
-liquibase.hub.ApiKey: *** Your Liquibase Hub API Key ***
 dbmarlin.url: *** URL to your DBmarlin Instance ***
 dbmarlin.instanceId: *** The database target ID from the DBmarlin dashboard ***
 dbmarlin.apiKey:  *** The base64 encoded username:password if basic auth is enabled ***
