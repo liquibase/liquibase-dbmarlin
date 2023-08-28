@@ -1,5 +1,5 @@
 # Liquibase DB Marlin Extension
-When a Liquibase executes an operation, the data associated with that operation is sent to DB Marlin so it's available in the database performance timeline for Root Cause Analysis. This integration is based on the [DB Marlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
+When a Liquibase executes an operation, the data associated with that operation is sent to DB Marlin so it's available for Root Cause Analysis in the database performance timeline. This integration is based on the [DB Marlin Jenkins Integration](https://docs.dbmarlin.com/docs/integrations/jenkins/).
 
 ## Configuration
 Add the following properties to your `liquibase.properties` file.
