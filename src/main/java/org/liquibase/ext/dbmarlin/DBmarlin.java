@@ -1,7 +1,5 @@
 package org.liquibase.ext.dbmarlin;
 
-import org.liquibase.ext.dbmarlin.hub.DBMarlinConfiguration;
-
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.HttpURLConnection;
@@ -9,11 +7,12 @@ import java.net.URL;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 /**
  * The main DB Marlin API Interface.
  */
-public class DBMarlin {
+public class DBmarlin {
 
     private final String DBMARLIN_URL;
     private final Integer DBMARLIN_DB_TARGET_ID;
@@ -22,11 +21,11 @@ public class DBMarlin {
     private final String DBMARLIN_API_KEY;
 
     {
-        DBMARLIN_URL = DBMarlinConfiguration.DBMARLIN_URL.getCurrentValue();
-        DBMARLIN_DB_TARGET_ID = DBMarlinConfiguration.DBMARLIN_INSTANCE_ID.getCurrentValue();
-        DBMARLIN_EVENT_TYPE_ID = DBMarlinConfiguration.DBMARLIN_EVENT_TYPE_ID.getCurrentValue();
+        DBMARLIN_URL = DBmarlinConfiguration.DBMARLIN_URL.getCurrentValue();
+        DBMARLIN_DB_TARGET_ID = DBmarlinConfiguration.DBMARLIN_INSTANCE_ID.getCurrentValue();
+        DBMARLIN_EVENT_TYPE_ID = DBmarlinConfiguration.DBMARLIN_EVENT_TYPE_ID.getCurrentValue();
         DBMARLIN_COLOUR_CODE = "#2962ff";
-		DBMARLIN_API_KEY = DBMarlinConfiguration.DBMARLIN_API_KEY.getCurrentValue();
+		DBMARLIN_API_KEY = DBmarlinConfiguration.DBMARLIN_API_KEY.getCurrentValue();
     }
 
     /**
@@ -83,9 +82,12 @@ public class DBMarlin {
      * @return String
      */
     private String generatePayload(String eventLink, Date eventTime, String eventTitle, String eventDescription) {
+
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'");
+
         return "[{" +
                 "\"eventId\": 1" + "," +
-                "\"startDateTime\": \"" + this.formatDate(eventTime, DateTimeFormatter.ISO_DATE_TIME) + "\"," +
+                "\"startDateTime\": \"" + dateFormat.format(eventTime) + "\"," +
                 "\"databaseTargetId\": " + this.DBMARLIN_DB_TARGET_ID + "," +
                 "\"eventTypeId\": " + this.DBMARLIN_EVENT_TYPE_ID + "," +
                 "\"title\": \"" + eventTitle + "\"," +
