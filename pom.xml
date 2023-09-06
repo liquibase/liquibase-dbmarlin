@@ -119,9 +119,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
-                    <!-- <optimize>true</optimize> -->
                     <debug>true</debug>
-                    <!--suppress UnresolvedMavenProperty -->
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
