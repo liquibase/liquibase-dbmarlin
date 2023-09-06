@@ -56,7 +56,7 @@
     <scm>
         <connection>scm:git:https://github.com/liquibase/liquibase-dbmarlin.git</connection>
         <url>https://github.com/liquibase/liquibase-dbmarlin</url>
-        <tag>liquibase-dbmarlin-0.1.0</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <distributionManagement>
