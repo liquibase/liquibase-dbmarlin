@@ -18,6 +18,9 @@ dbmarlin.apiKey:  *** The base64 encoded username:password if basic auth is enab
 dbmarlin.eventTypeId: *** The event type id in DBmarlin (default is 5) ***
 liquibase.licenseKey: *** Your Liquibase Pro License Key ***
 ```
+## Run Liquibase Update
+Now that Liquibase Pro and the Liquibase DBmarlin extension have been installed and configured, `liquibase update` commands will send their information on database deployments to DBmarlin for easy viewing on the database performance timeline.
+
 ## Contribution
 
 To [file a bug](https://github.com/liquibase/liquibase-dbmarlin/issues), improve documentation, or [contribute code](https://github.com/liquibase/liquibase-dbmarlin/pulls), follow our [guidelines for contributing](https://contribute.liquibase.com/code).
