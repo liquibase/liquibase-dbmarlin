@@ -5,6 +5,7 @@
     <artifactId>liquibase-dbmarlin</artifactId>
     <version>1.1.0-SNAPSHOT</version>
     <name>Liquibase DBmarlin Extension</name>
+    <description>This extension shares database deployment information from Liquibase to DBmarlin's timeline for context and insights into database performance.</description>
     <url>https://github.com/liquibase/liquibase-dbmarlin</url>
     <packaging>jar</packaging>
 
@@ -12,7 +13,20 @@
         <name>Liquibase.org</name>
         <url>http://www.liquibase.org</url>
     </organization>
-
+    
+    <developers>
+        <developer>
+            <id>mickmcg-ap</id>
+            <name>Mick McGuinness</name>
+            <email>mick.mcguinness@applicationperformance.com</email>
+        </developer>
+        <developer>
+            <id>kevin-atx</id>
+            <name>Kevin Chappell</name>
+            <email>kevin@liquibase.com</email>
+        </developer>
+    </developers>
+    
     <licenses>
         <license>
             <url>http://www.apache.org/licenses/LICENSE-2.0</url>
