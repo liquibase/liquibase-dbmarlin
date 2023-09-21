@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-dbmarlin</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Liquibase DBmarlin Extension</name>
     <description>This extension shares database deployment information from Liquibase to DBmarlin's timeline for context and insights into database performance.</description>
     <url>https://github.com/liquibase/liquibase-dbmarlin</url>
@@ -69,7 +69,7 @@
     <scm>
         <connection>scm:git:https://github.com/liquibase/liquibase-dbmarlin.git</connection>
         <url>https://github.com/liquibase/liquibase-dbmarlin</url>
-        <tag>HEAD</tag>
+        <tag>liquibase-dbmarlin-1.0.0</tag>
     </scm>
 
     <distributionManagement>
