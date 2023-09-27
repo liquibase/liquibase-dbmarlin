@@ -1,5 +1,7 @@
 # Liquibase DBmarlin Extension
-Liquibase for DBmarlin uses structured logging to bring database deployment information (details of deployed changes from your Liquibase changelog) into the DBmarlin timeline. This information helps you see the performance impact of database changes and gives you the right information in the right context to quickly perform a root-cause analysis of operational problems.
+Liquibase for DBmarlin uses structured logging to bring database deployment information (details of deployed changes from your Liquibase changelog) into the DBmarlin timeline.
+
+This information helps you see the performance impact of database changes and gives you the right information in the right context to quickly perform a root-cause analysis of operational problems.
 
 ## Install Liquibase Pro + DBmarlin extension
 
