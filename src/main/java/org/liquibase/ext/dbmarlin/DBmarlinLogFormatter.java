@@ -1,23 +1,18 @@
 package org.liquibase.ext.dbmarlin;
 
-import liquibase.Scope;
-import liquibase.exception.LiquibaseException;
-import liquibase.pro.packaged.w;
-import liquibase.ui.UIService;
-
 import com.datical.liquibase.ext.logging.structured.StructuredLogFormatter;
+import liquibase.Scope;
+import liquibase.ui.UIService;
+import org.yaml.snakeyaml.Yaml;
+import org.yaml.snakeyaml.error.YAMLException;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
-import java.text.SimpleDateFormat;
-import java.util.TimeZone;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.logging.LogRecord;
-
-import org.yaml.snakeyaml.Yaml;
-import org.yaml.snakeyaml.error.YAMLException;
 
 public class DBmarlinLogFormatter extends StructuredLogFormatter {
 
@@ -37,7 +32,7 @@ public class DBmarlinLogFormatter extends StructuredLogFormatter {
         }
     }
 
-    private void postToDBmarlin(String logRecord) throws LiquibaseException {
+    private void postToDBmarlin(String logRecord) {
 
         // Create a SnakeYAML Yaml instance
         Yaml yaml = new Yaml();
