@@ -5,6 +5,11 @@ on:
     types:
       - closed
 
+permissions:
+  contents: write
+  actions: read
+  packages: write
+  id-token: write
 jobs:
 
   attach-artifact-to-release:
